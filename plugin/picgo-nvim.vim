@@ -24,9 +24,9 @@ endfunction
 call s:Init()
 "==============================================
 let s:py_file = expand('<sfile>:p:h') . '/../script/imagePost.py' 
-if has('python')
+if has('python3')
   let s:python_executable = 'python'
-elseif has('python3')
+elseif has('python')
   let s:python_executable = 'python3'
 else
   echo "No \"python\" provider found"

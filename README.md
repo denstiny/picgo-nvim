@@ -3,6 +3,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [安装](#安装)
+* [依赖](#依赖)
 * [配置](#配置)
 * [演示](#演示)
 * [常见问题](#常见问题)
@@ -21,6 +22,11 @@ use 'denstiny/picgo-nvim'
 ```shell
 plug "denstiny/picgo-nvim"
 ```
+## 依赖
+|            | 必须  |
+| `python`   | `yes` |
+| `requests` | `yes` |
+| `pynvim`   | `yes` |
 
 ## 配置
 ```vim
