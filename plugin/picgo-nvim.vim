@@ -57,8 +57,8 @@ endfunction
 "==============================================
 function s:on_exit(id,data,event) abort
   if len(s:g__) > 1
-    echo s:g__
     call append(s:line, s:g__)
+    echo ""
   endif
   let s:g__ = ' '
 endfunction
@@ -88,6 +88,7 @@ function! s:get_visual_selection()
 endfunction
 "==============================================
 function! s:UpdateHiddenSymbols(argcomment) abort
+  echo "Ready to upload ..."
   let s:line = line('.')
   let s:loop = s:py_file
   let s:callbacks = {
