@@ -30,11 +30,9 @@ nmap <silent><A-p> :call UpdateImageX()<cr> " 上传剪切板图片
 vmap <silent><A-o> :call UpdateImageR()<cr> " 上传指定位置图片
 " UpdateImagePath path 指定路径
 ```
-## 演示
-<!-- vim-markdown-toc GFM -->
+## 演示  
 
-* [常见问题](#常见问题)
-
+<https://user-images.githubusercontent.com/57088952/155927788-6a3efdca-921e-44ed-aeec-3da1cc6feaf9.mp4>  
 
 ## 常见问题
 - 插件体验不佳
