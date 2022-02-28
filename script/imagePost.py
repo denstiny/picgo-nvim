@@ -14,14 +14,9 @@ import sys
 import requests
 import subprocess
 import datetime
-
-
-
-root = {'遇见图床': {'url':'https://www.hualigs.cn/api/upload',
-        'token':'eaa4eb11884f7a60e03f5c2eab3161c8'},
-        '牛图网'  : {'url':'https://www.niupic.com/api/upload',
-        'token':'xxx'}}
-
+from pynvim import attach
+nvim = attach('child', argv=["/bin/env", "nvim", "--embed", "--headless"])
+head = nvim.eval('g:picgo_server')
 
 
 class PostImage:
@@ -103,7 +98,7 @@ class PostImage:
         if self.get_xclip(has_png) ==  0:
             file_path = self.currentTime('.png')
             self.get_xclip(save_png + file_path)
-            image_url = self.PostImage(root['遇见图床'],file_path)
+            image_url = self.PostImage(head['遇见图床'],file_path)
             if image_url != False:
                 os.remove(file_path)
                 return image_url
@@ -112,7 +107,7 @@ class PostImage:
             file_path = self.currentTime('.jpg')
             self.xclip_path = file_path
             self.get_xclip(save_jpg + file_path)
-            image_url = self.PostImage(root['遇见图床'],file_path)
+            image_url = self.PostImage(head['遇见图床'],file_path)
             if image_url != False:
                 os.remove(file_path)
                 return image_url
@@ -123,13 +118,16 @@ class PostImage:
 
     def __del__(self):
         if self.xclip_path != '':
-            os.remove(self.xclip_path)
+            try:
+                os.remove(self.xclip_path)
+            except Exception:
+                pass
         pass
 
 
 def uploadPathImage(image):
     tool = PostImage()
-    imageUrl = tool.PostImage(root['遇见图床'],image)
+    imageUrl = tool.PostImage(head['遇见图床'],image)
     if imageUrl != False:
         print("![](" + imageUrl +")")
 
@@ -138,6 +136,7 @@ def uploadXclipImage():
     imageUrl = tool.getClipFileImage()
     if imageUrl != False:
         print("![](" + imageUrl +")")
+
 if __name__ == "__main__":
     if len(sys.argv) ==  2:
         uploadPathImage(sys.argv[1])

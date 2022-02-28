@@ -4,23 +4,25 @@
 " @github      : https://github.com/denstiny
 " @blog        : https://denstiny.github.io
 
+function s:Init() abort
+  function! s:optdef(argument, default)
+    if !has_key(g:, a:argument) | let g:{a:argument} = a:default | endif
+  endfunction
 
-"==============================================
-function! s:optdef(argument, default)
-  if !has_key(g:, a:argument) | let g:{a:argument} = a:default | endif
+  "==============================================
+  " 启动插件
+  call s:optdef("picgo_start", v:false)
+  " 自动转换地址
+  call s:optdef("picgo_auto_path", v:false)
+  " 运行启动的文件类型
+  call s:optdef("picgo_run_list", [''])
+  call s:optdef("picgo_server", {'遇见图床':{'url':'https://www.hualigs.cn/api/upload','token':'eaa4eb11884f7a60e03f5c2eab3161c8'},'牛图网':{'url':'https://www.niupic.com/api/upload','token':'xxxx'}})
+
+  "==============================================
+  command! -nargs=1 -complete=file UpdateImagePath call s:UpdateHiddenSymbols("<args>")
 endfunction
-
+call s:Init()
 "==============================================
-" 启动插件
-call s:optdef("picgo_start", 1)
-" 自动转换地址
-call s:optdef("picgo_auto_path", 0)
-" 运行启动的文件类型
-call s:optdef("picgo_run_list", [''])
-call s:optdef("picgo_key","")
-
-"==============================================
-
 let s:py_file = expand('<sfile>:p:h') . '/../script/imagePost.py' 
 if has('python')
   let s:python_executable = 'python'
@@ -28,6 +30,10 @@ elseif has('python3')
   let s:python_executable = 'python3'
 else
   echo "No \"python\" provider found"
+endif
+if !g:picgo_start
+  nmap <silent><A-p> :call UpdateImageX()<cr> " 上传剪切板图片
+  vmap <silent><A-o> :call UpdateImageR()<cr> " 上传指定位置图片
 endif
 let s:xclip_start = v:false
 
@@ -107,5 +113,3 @@ function g:UpdateImageX() abort
   call s:UpdateHiddenSymbols(v:false)
 endfunction
 "==============================================
-nmap <silent><A-p> :call UpdateImageX()<cr> " 上传剪切板图片
-vmap <silent><A-o> :call UpdateImageR()<cr> " 上传指定位置图片
