@@ -1,5 +1,5 @@
-# 自动上传图片到图床
-
+# picgo-nvim
+> 这是我的第一个插件,他可以帮助上传图片到图床
 <!-- vim-markdown-toc GFM -->
 
 * [安装](#安装)
@@ -9,7 +9,7 @@
 
 <!-- vim-markdown-toc -->
 
-> [chinese]() | [english]() 
+> [chinese](#picgo-nvim) | [english](./english.md) 
 ![](https://www.hualigs.cn/image/621c4db64ef54.jpg) 
 ## 安装
 > 使用你喜欢的插件管理工具  
@@ -21,6 +21,7 @@ use 'denstiny/picgo-nvim'
 ```shell
 plug "denstiny/picgo-nvim"
 ```
+
 ## 配置
 ```vim
 let g:picgo_start = v:true
