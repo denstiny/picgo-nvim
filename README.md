@@ -23,7 +23,8 @@ use 'denstiny/picgo-nvim'
 plug "denstiny/picgo-nvim"
 ```
 ## 依赖
-|            | 必须  |
+| 依赖       | 必须  |
+|------------|-------|
 | `python`   | `yes` |
 | `requests` | `yes` |
 | `pynvim`   | `yes` |
