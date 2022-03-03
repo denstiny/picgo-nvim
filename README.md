@@ -1,3 +1,4 @@
+# 图床api发生变化，等周末重新维护
 # picgo-nvim
 > 这是我的第一个插件,他可以帮助上传图片到图床
 <!-- vim-markdown-toc GFM -->
